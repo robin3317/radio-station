@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "channelName": "Putin FM",
+      "frequency": "66,6"
+    },
+    {
+      "id": "2",
+      "channelName": "Dribbble FM",
+      "frequency": "101,2"
+    },
+    {
+      "id": "3",
+      "channelName": "Doge FM",
+      "frequency": "99,4"
+    },
+    {
+      "id": "4",
+      "channelName": "Balladas FM",
+      "frequency": "87,1"
+    },
+    {
+      "id": "5",
+      "channelName": "Maximum FM",
+      "frequency": "142,2"
+    }
+  ]
+}

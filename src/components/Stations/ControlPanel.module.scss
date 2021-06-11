@@ -1,0 +1,30 @@
+@keyframes showControlPanel {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.controlContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4.4rem 0;
+  animation-name: showControlPanel;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+
+  .minus,
+  .plus {
+    cursor: pointer;
+  }
+  .clipImg {
+    border-radius: 50%;
+    border: 3px solid #a2abad;
+    background-color: #a2abad;
+  }
+}

@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import Station from '../Station/Station';
 import ControlPanel from './ControlPanel';
+import EmptyPlaceholder from '../EmptyPlaceholder/EmptyPlaceholder';
 import DB from '../../DB.json';
-import BackArrow from '../../assets/back-arrow.png';
-import Switch from '../../assets/switch.png';
 import styles from './Stations.module.scss';
 
 const Stations = () => {
@@ -15,37 +16,12 @@ const Stations = () => {
     setChannelName(channelName);
   };
 
-  const handleBackClick = () => {
-    // TODO: implement later
-  };
-
-  const handlePowerClick = () => {
-    // TODO: implement later
-  };
-
   return (
     <div className={styles.stations}>
-      {/* start header container */}
-      <div className={styles.headerContainer}>
-        <img
-          className={styles.backBtn}
-          src={BackArrow}
-          alt="Go Back"
-          onClick={handleBackClick}
-        />
-        <h1 className={styles.title}>Stations</h1>
-        <img
-          className={styles.powerBtn}
-          src={Switch}
-          alt="Power"
-          onClick={handlePowerClick}
-        />
-      </div>
-      {/* end header container */}
+      <Header />
 
-      {/* start stations container */}
       <div className={styles.stationsContainer}>
-        {DB.data &&
+        {DB.data && DB.data.length > 0 ? (
           DB.data.map((station) => (
             <div key={station.id} className={styles.stationWrapper}>
               {station.id === currentPlaying ? <ControlPanel /> : null}
@@ -54,20 +30,18 @@ const Stations = () => {
                 handleCurrentPlaying={handleCurrentPlaying}
               />
             </div>
-          ))}
+          ))
+        ) : (
+          <div className={styles.emptyPlaceholder}>
+            <EmptyPlaceholder
+              message="No radio station found!"
+              styles={{ textTransform: 'uppercase', fontSize: '2.5rem' }}
+            />
+          </div>
+        )}
       </div>
-      {/* end stations container */}
 
-      {/* start footer container */}
-      <div className={styles.footerContainer}>
-        {channelName ? (
-          <>
-            <p className={styles.title}>Currently Playing</p>
-            <p>{channelName}</p>
-          </>
-        ) : null}
-      </div>
-      {/* end footer container */}
+      <Footer channelName={channelName} />
     </div>
   );
 };

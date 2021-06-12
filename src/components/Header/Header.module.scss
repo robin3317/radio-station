@@ -1,0 +1,20 @@
+.headerContainer {
+  background-color: #ecaa5b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+
+  .title {
+    color: #fff;
+    font-size: 4.4rem;
+    text-transform: uppercase;
+  }
+
+  .backBtn,
+  .powerBtn {
+    cursor: pointer;
+  }
+}

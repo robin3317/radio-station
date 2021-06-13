@@ -1,19 +1,20 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Station from '../Station/Station';
 import ControlPanel from './ControlPanel';
 import EmptyPlaceholder from '../EmptyPlaceholder/EmptyPlaceholder';
+import { setPlayingStation } from '../../store/station/station.actions';
 import DB from '../../DB.json';
 import styles from './Stations.module.scss';
 
 const Stations = () => {
-  const [currentPlaying, setCurrentPlaying] = useState(null);
-  const [channelName, setChannelName] = useState(null);
+  const dispatch = useDispatch();
+
+  const { playingStation } = useSelector((state) => state.station);
 
   const handleCurrentPlaying = ({ id, channelName }) => {
-    setCurrentPlaying(id);
-    setChannelName(channelName);
+    dispatch(setPlayingStation({ id, channelName }));
   };
 
   return (
@@ -24,7 +25,7 @@ const Stations = () => {
         {DB.data && DB.data.length > 0 ? (
           DB.data.map((station) => (
             <div key={station.id} className={styles.stationWrapper}>
-              {station.id === currentPlaying ? <ControlPanel /> : null}
+              {station.id === playingStation.id ? <ControlPanel /> : null}
               <Station
                 stationInfo={station}
                 handleCurrentPlaying={handleCurrentPlaying}
@@ -41,7 +42,7 @@ const Stations = () => {
         )}
       </div>
 
-      <Footer channelName={channelName} />
+      <Footer channelName={playingStation.channelName} />
     </div>
   );
 };

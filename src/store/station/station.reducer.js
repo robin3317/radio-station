@@ -2,6 +2,7 @@ import StationActionTypes from './station.types';
 
 const INITIAL_STATE = {
   playingStation: null,
+  stationList: null,
 };
 
 const stationReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const stationReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         playingStation: action.payload,
+      };
+    case StationActionTypes.SET_STATION_LIST:
+      return {
+        ...state,
+        stationList: action.payload,
       };
     default:
       return state;

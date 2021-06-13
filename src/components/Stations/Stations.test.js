@@ -14,6 +14,4 @@ describe('Stations component', () => {
       expect(stationNameElement).toBeInTheDocument();
     });
   });
-
-  test('show control panel when click on the station', () => {});
 });
